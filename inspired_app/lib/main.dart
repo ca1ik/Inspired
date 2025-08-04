@@ -1,11 +1,11 @@
-// filepath: lib/main.dart
 import 'package:flutter/material.dart';
+import 'package:sqflite/sqflite.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'package:path/path.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  sqfliteFfiInit(); // Windows/Mac/Linux için gerekli
+  sqfliteFfiInit();
   final databaseFactory = databaseFactoryFfi;
   final database = await databaseFactory.openDatabase(
     join(await databaseFactory.getDatabasesPath(), 'users.db'),
