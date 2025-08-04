@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
-import 'package:path/path.dart';
+import 'package:path/path.dart' as p;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   sqfliteFfiInit();
   final databaseFactory = databaseFactoryFfi;
   final database = await databaseFactory.openDatabase(
-    join(await databaseFactory.getDatabasesPath(), 'users.db'),
+    p.join(await databaseFactory.getDatabasesPath(), 'users.db'),
     options: OpenDatabaseOptions(
       version: 1,
       onCreate: (db, version) async {
@@ -67,7 +67,7 @@ class _LoginScreenState extends State<LoginScreen> {
         context,
       ).showSnackBar(const SnackBar(content: Text('Giriş başarısız')));
     }
-  }
+  } // <-- BURADA FONKSİYON KAPANMALI
 
   void _register() async {
     final db = widget.database;
@@ -78,7 +78,7 @@ class _LoginScreenState extends State<LoginScreen> {
     ScaffoldMessenger.of(
       context,
     ).showSnackBar(const SnackBar(content: Text('Kayıt başarılı')));
-  }
+  } // <-- BURADA FONKSİYON KAPANMALI
 
   @override
   Widget build(BuildContext context) {
